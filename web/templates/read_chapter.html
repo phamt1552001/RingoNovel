@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}{{ chapter.title }}{% endblock %}
+
+{% block content %}
+<div class="chapter-detail text-center">
+    <div class="card">
+        <div class="card-body">
+            <!-- Phần tiêu đề của chương -->
+            <div class="chapter-header">
+                <h1>{{ chapter.title }}</h1>
+                <h2>Chương {{ chapter.intChapter }} - {{ novel.title }}</h2>
+            </div>
+            <!-- Phần nội dung của chương -->
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="chapter-content">
+                        <p>{{ chapter.content }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

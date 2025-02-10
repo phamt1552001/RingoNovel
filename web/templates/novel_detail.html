@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ novel.title }}{% endblock %}
+
+{% block content %}
+<div class="novel-detail text-center">
+    <div class="card">
+        <div class="card-body">
+            <!-- Phần tiêu đề của tiểu thuyết -->
+            <div class="novel-header">
+                <img src="{{novel.cover_image}}" alt="{{novel.title}} cover image" class="novel-cover">
+                <h1>{{ novel.title }}</h1>
+                <h2>By {{ novel.author }}</h2>
+                <div class="novel-stats mt-3">
+                    <span>Lượt xem: {{ views.views }}</span> |
+                    <a href="#" id="like-button" data-novel-id="{{ novel.id }}" class="text-decoration-none">
+                        <i class="bi bi-hand-thumbs-up"></i> Lượt thích: <span id="like-count">{{ novel.like_count }}</span>
+                    </a> |
+                    <a href="#" id="follow-button" data-novel-id="{{ novel.id }}" class="text-decoration-none">
+                        <i class="bi bi-person-plus"></i> Lượt theo dõi: <span id="follow-count">{{ novel.follow_count }}</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Phần mô tả của tiểu thuyết -->
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="novel-description">
+                        <p>{{ novel.description }}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Phần danh sách chương có thể cuộn -->
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="chapter-list-container">
+                        <ul class="list-unstyled" id="chapter-list">
+                            {% for chapter in chapters %}
+                                <li>Chương {{ chapter.intChapter }}: <a href="{% url 'read_chapter' novel.id chapter.id %}">{{ chapter.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Phần bình luận -->
+            <div class="novel-comments mt-3">
+                <h3>Comments</h3>
+                <ul class="list-unstyled">
+                    {% for comment in comments %}
+                        <li class="card mt-2">
+                            <div class="card-body d-flex align-items-center">
+                                <img src="{{ comment.user.profile.profile_picture }}" alt="{{ comment.user.username }}'s profile picture" class="rounded-circle me-2" style="width: 40px; height: 40px;">
+                                <div>
+                                    <p>
+                                        <strong class="rainbow-text"><a href="{% url 'profile' %}" class="text-decoration-none">{{ comment.user.username }}</a>:</strong>
+                                        {{ comment.content }}
+                                        <br>
+                                        <small class="text-muted">{{ comment.create_at }}</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <!-- Form thêm bình luận mới -->
+                <form method="post" action="{% url 'add_comment' novel.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea name="content" class="form-control" placeholder="Add a comment..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Include the script tag at the bottom of the file -->
+<div id="notification" class="notification">Liked successfully!</div>
+
+<script src="{% static 'js/scripts.js' %}"></script>
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Chỉnh Sửa Chương{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header text-center">
+            <h1>Chỉnh Sửa Chương</h1>
+        </div>
+        <div class="card-body">
+            <form method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.intChapter }}
+                    <div class="invalid-feedback">
+                        Vui lòng nhập số chương.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    {{ form.title }}
+                    <div class="invalid-feedback">
+                        Vui lòng nhập tiêu đề chương.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    {{ form.content }}
+                    <div class="invalid-feedback">
+                        Vui lòng nhập nội dung chương.
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Khu Sáng Tác{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Khu Sáng Tác</h1>
+    <p>Đây là khu vực dành cho tác giả.</p>
+    <div class="author-actions">
+        <a href="{% url 'create_novel' %}" class="btn btn-primary">Tạo Tiểu Thuyết Mới</a>
+    </div>
+    <div class="novel-list mt-4 border p-3" style="background-color: #f9f9f9; border: 2px solid #007bff; box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);">
+        <h2 class="h5">Danh Sách Tiểu Thuyết</h2>
+        <ul class="list-unstyled">
+            {% for novel in novels %}
+            <li class="d-flex align-items-center mb-2">
+                <img src="{{ novel.cover_image }}" alt="{{ novel.title }}" class="img-thumbnail mr-2" style="width: 70px; height: 70px;">
+                <div>
+                    <a href="{% url 'edit_novel' novel.id %}">{{ novel.title }}</a>
+                    <p class="mb-0">Tổng số chương: {{ novel.total_chapters }}</p>
+                    <p class="mb-0">Lượt xem: {{ novel.views_novel.views }}</p>
+                    <p class="mb-0">Lượt thích: {{ novel.like_count }}</p>
+                    <p class="mb-0">Lượt theo dõi: {{ novel.follow_count }}</p>
+                    <a href="{% url 'add_chapter' novel.id %}" class="btn btn-secondary btn-sm">Thêm Chương</a>
+                    <a href="{% url 'edit_novel' novel.id %}" class="btn btn-warning btn-sm">Chỉnh Sửa</a>
+                    <a href="{% url 'novel_detail' novel.id %}" class="btn btn-info btn-sm">Danh Sách Chương</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
