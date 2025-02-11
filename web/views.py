@@ -51,7 +51,7 @@ class NovelView:
         novels = Novel.objects.all()
 
         if query:
-            novels = novels.filter(title__icontains(query))
+            novels = novels.filter(title__icontains=query)
         if chapters:
             if chapters == 'under_50':
                 novels = novels.filter(chapters__lt(50))
