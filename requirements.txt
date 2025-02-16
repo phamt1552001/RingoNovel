@@ -1,5 +1,4 @@
 django
 django-heroku
-django-toolbelt
 psycopg2-binary
 gunicorn
