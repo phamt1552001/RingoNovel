@@ -35,4 +35,5 @@ urlpatterns = [
     path('check_errors/', MiscView.check_errors, name='check_errors'),
     path('donate/', MiscView.donate, name='donate'),
     path('search/', NovelView.search, name='search_novels'),
+    path('find/', NovelView.find, name='find_novel'),
 ]
