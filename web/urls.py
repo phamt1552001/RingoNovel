@@ -21,5 +21,4 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='index'), name='logout'),
     path('find_novel/', NovelView.search, name='find_novel'),
-    path('search/', NovelView.search, name='search_novels'),
 ]
