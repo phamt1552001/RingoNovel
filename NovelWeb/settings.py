@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import django_heroku
+django_heroku.settings(locals())
 from pathlib import Path
 import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)
