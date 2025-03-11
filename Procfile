@@ -1,1 +1,1 @@
-web: gunicorn NovelWeb.wsgi
+web: gunicorn project_name.wsgi --log-file -
