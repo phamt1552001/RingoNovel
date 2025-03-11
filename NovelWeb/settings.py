@@ -9,9 +9,15 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+import django_heroku
+django_heroku.settings(locals())
+
 import os
 from pathlib import Path
-import dj_database_url 
+
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5_*=#^=vbs^9)@73m7t1_4up4sizz^i#n)p0i5hmuvgh$$)_@u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS =  ['*']
 
@@ -85,8 +91,6 @@ DATABASES = {
         #'PORT': '5432',
     }
 }
-prod_db = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -134,5 +138,4 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import django_heroku
-django_heroku.settings(locals())
+
