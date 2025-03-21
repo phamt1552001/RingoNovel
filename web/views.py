@@ -80,6 +80,13 @@ class NovelView:
             'genre': genre
         }
         return render(request, 'find_novel.html', context)
+    
+    @staticmethod
+    @login_required
+    def list_chapters(request, novel_id):
+        novel = get_object_or_404(Novel, id=novel_id, author=request.user)
+        chapters = Chapter.objects.filter(novel=novel).order_by('-id')
+        return render(request, 'list_chapter.html', {'novel': novel, 'chapters': chapters})
 
 class ChapterView:
     @staticmethod
@@ -109,6 +116,19 @@ class ChapterView:
         else:
             form = ChapterForm()
         return render(request, 'add_chapter.html', {'form': form, 'novel': novel})
+    
+    @staticmethod
+    @login_required
+    def edit(request, chapter_id):
+        chapter = get_object_or_404(Chapter, id=chapter_id)
+        if request.method == 'POST':
+            form = ChapterForm(request.POST, instance=chapter)
+            if form.is_valid():
+                form.save()
+                return redirect('novel_detail', novel_id=chapter.novel.id)
+        else:
+            form = ChapterForm(instance=chapter)
+        return render(request, 'edit_chapter.html', {'form': form, 'chapter': chapter})
 
 class UserView:
     @staticmethod

@@ -23,7 +23,7 @@
                     <p class="mb-0">Lượt theo dõi: {{ novel.follow_count }}</p>
                     <a href="{% url 'add_chapter' novel.id %}" class="btn btn-secondary btn-sm">Thêm Chương</a>
                     <a href="{% url 'edit_novel' novel.id %}" class="btn btn-warning btn-sm">Chỉnh Sửa</a>
-                    <a href="{% url 'novel_detail' novel.id %}" class="btn btn-info btn-sm">Danh Sách Chương</a>
+                    <a href="{% url 'list_chapter' novel.id %}" class="btn btn-info btn-sm">Danh Sách Chương</a>
                 </div>
             </li>
             {% endfor %}

@@ -14,8 +14,17 @@
             <!-- Phần nội dung của chương -->
             <div class="card mt-3">
                 <div class="card-body">
-                    <div class="chapter-content">
-                        <p>{{ chapter.content }}</p>
+                    <div class="chapter-content text-start">
+                        <p id="idContents" onclick="editName(event)"></p>
+                        <script>
+                            function editName(event) {
+                                
+                            }
+                            var contents = "{{ chapter.content|escapejs }}";
+                            contents = contents.replace(/(?:\r\n|\r|\n)/g, '<br>');
+                            document.writeln(contents);
+                            
+                        </script>
                     </div>
                 </div>
             </div>

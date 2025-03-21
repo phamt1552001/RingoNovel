@@ -17,6 +17,8 @@ urlpatterns = [
     path('create_novel/', UserView.create_novel, name='create_novel'),
     path('edit_novel/<int:novel_id>/', UserView.edit_novel, name='edit_novel'),
     path('add_chapter/<int:novel_id>/', ChapterView.add, name='add_chapter'),
+    path('edit_chapter/<int:chapter_id>/', ChapterView.edit, name='edit_chapter'),
+    path('list_chapter/<int:novel_id>/', NovelView.list_chapters, name='list_chapter'),
     path('check_errors/', MiscView.check_errors, name='check_errors'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='index'), name='logout'),
