@@ -1,8 +1,22 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="RingoNovel - Trang web cung cấp tiểu thuyết trực tuyến chất lượng cao, cập nhật nhanh chóng.">
+    <meta name="keywords" content="RingoNovel, tiểu thuyết, trực tuyến, chất lượng, cập nhật, nhanh chóng">
+    <meta name="author" content="RingoNovel">
+    <meta property="og:title" content="RingoNovel">
+    <meta property="og:description" content="Trang web cung cấp tiểu thuyết trực tuyến chất lượng cao, cập nhật nhanh chóng.">
+    <meta property="og:image" content="{% static 'img/logo.png' %}">
+    <meta property="og:url" content="https://ringonovel.com/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RingoNovel">
+    <meta name="twitter:description" content="Trang web cung cấp tiểu thuyết trực tuyến chất lượng cao, cập nhật nhanh chóng.">
+    <meta name="twitter:image" content="{% static 'img/logo.png' %}">
+    
     <title>{% block title %}{% endblock %} - RingoNovel</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet"> <!-- Include Bootstrap Icons -->
@@ -58,50 +72,53 @@
             display: none;
         }
     </style>
-    {% load static %}
+
 </head>
 <body>
-    <!-- Thanh Điều Hướng -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'index' %}">RingoNovel</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#moi-nhat">Mới Nhất</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#hot-ngay">Hot Ngày</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Tìm kiếm</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Tài Khoản
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            {% if user.is_authenticated %}
-                                <li><a class="dropdown-item" href="{% url 'profile' %}">Thông Tin</a></li>
-                                <li><a class="dropdown-item" href="{% url 'settings' %}">Cài Đặt</a></li>
-                                <li><a class="dropdown-item" href="{% url 'author_area' %}">Khu Sáng Tác</a></li>
-                                <li><a class="dropdown-item" href="{% url 'donate' %}">Donate</a></li>
-                                <li>
-                                    <form method="post" action="{% url 'logout' %}">
-                                        {% csrf_token %}
-                                        <button type="submit" class="dropdown-item">Đăng Xuất</button>
-                                    </form>
-                                </li>
-                            {% else %}
-                                <li><a class="dropdown-item" href="{% url 'login' %}">Đăng Nhập</a></li>
-                            {% endif %}
-                        </ul>
-                    </li>
-                </ul>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'index' %}">RingoNovel</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#moi-nhat">Mới Nhất</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#hot-ngay">Hot Ngày</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Tìm kiếm</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Tài Khoản
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                {% if user.is_authenticated %}
+                                    <li><a class="dropdown-item" href="{% url 'profile' %}">Thông Tin</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'settings' %}">Cài Đặt</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'author_area' %}">Khu Sáng Tác</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'donate' %}">Donate</a></li>
+                                    <li>
+                                        <form method="post" action="{% url 'logout' %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="dropdown-item">Đăng Xuất</button>
+                                        </form>
+                                    </li>
+                                {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'login' %}">Đăng Nhập</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-    <div class="container mt-4">
+    <!-- Main Content -->
+    <main class="container mt-4">
         {% block content %}{% endblock %}
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-4 mt-5">
@@ -116,7 +133,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
     {% block extra_scripts %}{% endblock %}
 </body>
 </html>
