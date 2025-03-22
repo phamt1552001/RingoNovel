@@ -1,9 +1,10 @@
 from django.urls import path
+from django.contrib import admin
 from django.contrib.auth import views as auth_views
-
 from .views import NovelView, ChapterView, UserView, MiscView
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', NovelView.index, name='index'),
     path('novel/<int:novel_id>/', NovelView.detail, name='novel_detail'),
     path('novel/<int:novel_id>/add_comment/', NovelView.add_comment, name='add_comment'),

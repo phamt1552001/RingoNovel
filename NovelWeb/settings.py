@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5_*=#^=vbs^9)@73m7t1_4up4sizz^i#n)p0i5hmuvgh$$)_@u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS =  ['*']
 
@@ -78,14 +78,14 @@ WSGI_APPLICATION = 'NovelWeb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        #'ENGINE': 'django.db.backends.postgresql',
-        #'NAME': 'novels',
-        #'USER': 'ringo',
-        #'PASSWORD': 'ringo',
-        #'HOST': 'localhost',
-        #'PORT': '5432',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'novels',
+        'USER': 'ringo',
+        'PASSWORD': 'ringo',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

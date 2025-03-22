@@ -16,23 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from web.views import NovelView, ChapterView, UserView, MiscView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', NovelView.index, name='index'),
-    path('novel/<int:novel_id>/', NovelView.detail, name='novel_detail'),
-    path('novel/<int:novel_id>/comment/', NovelView.add_comment, name='add_comment'),
-    path('novel/<int:novel_id>/chapter/<int:chapter_id>/', ChapterView.read, name='read_chapter'),
-    path('novel/<int:novel_id>/chapter/add/', ChapterView.add, name='add_chapter'),
-    path('profile/', UserView.profile, name='profile'),
-    path('settings/', UserView.settings, name='settings'),
-    path('author_area/', UserView.author_area, name='author_area'),
-    path('novel/create/', UserView.create_novel, name='create_novel'),
-    path('novel/<int:novel_id>/edit/', UserView.edit_novel, name='edit_novel'),
-    path('novel/<int:novel_id>/like/', UserView.like_novel, name='like_novel'),
-    path('novel/<int:novel_id>/follow/', UserView.follow_novel, name='follow_novel'),
-    path('check_errors/', MiscView.check_errors, name='check_errors'),
-    path('donate/', MiscView.donate, name='donate'),
-    path('search/', NovelView.search, name='search_novels'),
+    path('', include('web.urls')),
 ]
