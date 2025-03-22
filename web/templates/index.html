@@ -47,7 +47,7 @@
     </style>
     <!-- Tiểu Thuyết Mới Nhất -->
     <section id="moi-nhat" class="mb-5">
-        <h2>Mới Nhất</h2>
+        <h2 class="line-color">Mới Nhất</h2>
         <div class="row">
             {% for novel in novels_news %}
             <div class = "border m-1">
@@ -60,7 +60,7 @@
 
         <!-- Tiểu Thuyết Đề Xuất -->
         <section id="de-xuat" class="mb-5">
-            <h2 class="mb-3">Đề Xuất</h2>
+            <h2 class="line-color">Đề Xuất</h2>
             <div class="row row-cols-3">
                 <!-- Lặp lại 4 hàng, mỗi hàng 3 cột -->
                 {% for novel in hot_novels %}
@@ -77,7 +77,7 @@
 
     <!-- Top Tiểu Thuyết -->
     <section id="top-novels" class="mb-5">
-        <h2 class="mb-3">Lượt Đọc Tổng</h2>
+        <h2 class="line-color">Lượt Đọc Tổng</h2>
         <div class="row row-cols-3">
             <!-- Lặp lại 4 hàng, mỗi hàng 3 cột -->
             {% for novel in top_novels %}
@@ -92,7 +92,7 @@
     </section>
 
     <section id="top-like-novels" class="mb-5">
-        <h2 class="mb-3">Lượt Thích</h2>
+        <h2 class="line-color">Lượt Thích</h2>
         <div class="row row-cols-3">
             <!-- Lặp lại 4 hàng, mỗi hàng 3 cột -->
             {% for novel in top_like_novels %}
@@ -107,7 +107,7 @@
     </section>
 
     <section id="top-like-novels" class="mb-5">
-        <h2 class="mb-3">Theo Dõi</h2>
+        <h2 class="line-color">Theo Dõi</h2>
         <div class="row row-cols-3">
             <!-- Lặp lại 4 hàng, mỗi hàng 3 cột -->
             {% for novel in top_follow_novels %}
