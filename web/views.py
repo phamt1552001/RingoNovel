@@ -1,20 +1,38 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.db.models import Sum, Count
+from django.utils.timezone import now
+from django.db.models import Sum, Count, F, Value
+from django.db.models.functions import Coalesce
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 from .models import Novel, Chapter, Comment, Profile, Views_Novel
 from .forms import NovelForm, ChapterForm
-
+from datetime import timedelta
 class NovelView:
     @staticmethod
     def index(request):
         novels = Novel.objects.all()
-        novels_news = novels.order_by('-id')[:12]
-        top_novels = Novel.objects.annotate(view_count=Sum('views_novel__views')).order_by('-view_count')[:12]
+        limit = 12
+        recent_time = now() - timedelta(days=30)
+
+        novels = Novel.objects.annotate(
+            follow_count=Count('followers'),
+            total_views=Coalesce(Sum('views_novel__views'), Value(0)),  # Tránh None
+            hot_score=F('follow_count') + F('total_views') + F('like_count')
+    )
+
+
+        novels_news = novels.order_by('-id')[:limit]
+        top_novels = novels.order_by('-total_views')[:limit]
+        hot_novels = novels.filter(create_at__gte=recent_time).order_by('-hot_score')[:limit]
+        top_like_novels = Novel.objects.order_by('-like_count')[:limit]
+        top_follow_novels = Novel.objects.annotate(follow_count=Count('followers')).order_by('-follow_count')[:limit]
         context = {
             "novels_news": novels_news,
-            "top_novels": top_novels
+            "top_novels": top_novels,
+            "top_like_novels": top_like_novels,
+            "top_follow_novels": top_follow_novels,
+            "hot_novels": hot_novels,
         }
         return render(request, 'index.html', context)
 

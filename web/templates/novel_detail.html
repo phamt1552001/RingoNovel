@@ -18,7 +18,7 @@
                         <i class="bi bi-hand-thumbs-up"></i> Lượt thích: <span id="like-count">{{ novel.like_count }}</span>
                     </a> |
                     <a href="#" id="follow-button" data-novel-id="{{ novel.id }}" class="text-decoration-none">
-                        <i class="bi bi-person-plus"></i> Lượt theo dõi: <span id="follow-count">{{ novel.follow_count }}</span>
+                        <i class="bi bi-person-plus"></i> Lượt theo dõi: <span id="follow-count">{{ novel.get_follow_count }}</span>
                     </a>
                 </div>
             </div>

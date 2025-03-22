@@ -26,7 +26,7 @@
             <h2 class="mb-3">Đề Xuất</h2>
             <div class="row">
                 <!-- Lặp lại 4 hàng, mỗi hàng 3 cột -->
-                {% for novel in novels_news %}
+                {% for novel in hot_novels %}
                 <div class="col-md-4 mb-4">
                     <div class="card border border-2 border-secondary">
                         <img src="{{ novel.cover_image }}" class="card-img-top" alt="{{ novel.title }}">
@@ -45,6 +45,42 @@
         <div class="row">
             <!-- Lặp lại 4 hàng, mỗi hàng 3 cột -->
             {% for novel in top_novels %}
+            <div class="col-md-4 mb-4">
+                <div class="card border border-2 border-info-subtle">
+                    <img src="{{ novel.cover_image }}" class="card-img-top" alt="{{ novel.title }}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><a href="{% url 'novel_detail' novel_id=novel.id %}">{{ novel.title }}</a></h5>
+                        <p class="card-text">Lượt xem: {{ novel.view_count|default:0 }}</p> <!-- Ensure view_count is displayed correctly -->
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="top-like-novels" class="">
+        <h2 class="mb-3">Lượt Thích</h2>
+        <div class="row">
+            <!-- Lặp lại 4 hàng, mỗi hàng 3 cột -->
+            {% for novel in top_like_novels %}
+            <div class="col-md-4 mb-4">
+                <div class="card border border-2 border-info-subtle">
+                    <img src="{{ novel.cover_image }}" class="card-img-top" alt="{{ novel.title }}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><a href="{% url 'novel_detail' novel_id=novel.id %}">{{ novel.title }}</a></h5>
+                        <p class="card-text">Lượt xem: {{ novel.view_count|default:0 }}</p> <!-- Ensure view_count is displayed correctly -->
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="top-like-novels" class="">
+        <h2 class="mb-3">Theo Dõi</h2>
+        <div class="row">
+            <!-- Lặp lại 4 hàng, mỗi hàng 3 cột -->
+            {% for novel in top_follow_novels %}
             <div class="col-md-4 mb-4">
                 <div class="card border border-2 border-info-subtle">
                     <img src="{{ novel.cover_image }}" class="card-img-top" alt="{{ novel.title }}">
