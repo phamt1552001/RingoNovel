@@ -1,0 +1,13 @@
+#carouselNovel img {
+    height: 30rem;
+    object-fit: cover;
+}
+#carouselNovel .carousel-caption {
+    text-align: left;
+    
+}
+
+.cardImgThumbnail {
+    height: 20rem;
+    object-fit: cover;
+}
