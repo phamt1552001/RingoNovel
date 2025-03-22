@@ -47,6 +47,12 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+class UserSettings(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    dark_mode = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username
 
 class Views_Novel(models.Model):
     novel = models.ForeignKey(Novel, on_delete=models.CASCADE, related_name='views_novel')

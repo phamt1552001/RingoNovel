@@ -137,6 +137,11 @@ class UserView:
 
     @staticmethod
     def settings(request):
+        """User settings view.
+        FontEnd: web/templates/settings.html
+            - Chế độ tối
+            - 
+        """
         return render(request, 'settings.html')
 
     @staticmethod
