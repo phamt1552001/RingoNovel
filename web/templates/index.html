@@ -2,10 +2,10 @@
 {% block title %}Trang Chủ{% endblock %}
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/index.css' %}?v={{ timestamp }}">
+<link rel="stylesheet" href="{% static 'css/index.css' %}?v={{ timestamp  }}">
 
 <!-- CAROUSEL  -->
-<div id="carouselNovel" class="container carousel slide my-5" data-bs-ride="carousel">
+<div id="carouselNovel" class="container carousel slide mb-5" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselNovel" data-bs-slide-to="0" class="active" aria-current="true"
             aria-label="Slide 1"></button>
@@ -50,11 +50,11 @@
 
 <div class="container">
     <!-- Tiểu Thuyết Mới Nhất -->
-    <section id="" class="Section mb-5 bg-secondary-subtle px-5">
+    <section id="" class="Section mb-5 bg-secondary-subtle px-5 py-3">
         <h2 class="line line-color">Mới Nhất</h2>
         <div class="row">
             {% for novel in novels_news %}
-            <div class="border m-1 d-flex">
+            <div class="m-1 d-flex bg-danger-subtle">
                 <img class="cardImgThumbnail" src="{{novel.cover_image}}" alt="Hình đại diện của {{novel.title}}"
                     sizes="" srcset="" style="height:50px; width: 50px;">
                 <div class="mx-3"><a class="line-color" href="{% url 'novel_detail' novel_id=novel.id %}">{{novel.title}}</a>
@@ -80,54 +80,6 @@
 
     </section>
 
-    <!-- Top Tiểu Thuyết -->
-    <section id="top-novels" class="mb-5">
-        <h2 class="line-color">Lượt Đọc Tổng</h2>
-        <div class="row row-cols-3">
-            <!-- Lặp lại 4 hàng, mỗi hàng 3 cột -->
-            {% for novel in top_novels %}
-            <div class="card border border-2 border-secondary mx-auto">
-                <img src="{{ novel.cover_image }}" class="card-img-top" alt="{{ novel.title }}">
-                <div class="card-body text-center">
-                    <h6 class="card-title text-wrap"><a href="{% url 'novel_detail' novel_id=novel.id %}">{{ novel.title
-                            }}</a></h6> <!-- Fixed link here -->
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-
-    <section id="top-like-novels" class="mb-5">
-        <h2 class="line-color">Lượt Thích</h2>
-        <div class="row row-cols-3">
-            <!-- Lặp lại 4 hàng, mỗi hàng 3 cột -->
-            {% for novel in top_like_novels %}
-            <div class="card border border-2 border-secondary mx-auto">
-                <img src="{{ novel.cover_image }}" class="card-img-top" alt="{{ novel.title }}">
-                <div class="card-body text-center">
-                    <h6 class="card-title text-wrap"><a href="{% url 'novel_detail' novel_id=novel.id %}">{{ novel.title
-                            }}</a></h6> <!-- Fixed link here -->
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-
-    <section id="top-like-novels" class="mb-5">
-        <h2 class="line-color">Theo Dõi</h2>
-        <div class="row row-cols-3">
-            <!-- Lặp lại 4 hàng, mỗi hàng 3 cột -->
-            {% for novel in top_follow_novels %}
-            <div class="card border border-2 border-secondary mx-auto">
-                <img src="{{ novel.cover_image }}" class="card-img-top" alt="{{ novel.title }}">
-                <div class="card-body text-center">
-                    <h6 class="card-title text-wrap"><a href="{% url 'novel_detail' novel_id=novel.id %}">{{ novel.title
-                            }}</a></h6> <!-- Fixed link here -->
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
 </div>
 
 {% endblock %}
