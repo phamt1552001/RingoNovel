@@ -50,27 +50,29 @@
 
 <div class="container">
     <!-- Tiểu Thuyết Mới Nhất -->
-    <section id="moi-nhat" class="mb-5">
-        <h2 class="line-color">Mới Nhất</h2>
+    <section id="" class="Section mb-5 bg-secondary-subtle px-5">
+        <h2 class="line line-color">Mới Nhất</h2>
         <div class="row">
             {% for novel in novels_news %}
-            <div class="border m-1">
-                <img class="img-thumbnail" src="{{novel.cover_image}}" alt="Hình đại diện của {{novel.title}}" sizes=""
-                    srcset="" style="width:50px;">
-                <a href="{% url 'novel_detail' novel_id=novel.id %}">{{novel.title}}</a>
+            <div class="border m-1 d-flex">
+                <img class="cardImgThumbnail" src="{{novel.cover_image}}" alt="Hình đại diện của {{novel.title}}"
+                    sizes="" srcset="" style="height:50px; width: 50px;">
+                <div class="mx-3"><a class="line-color" href="{% url 'novel_detail' novel_id=novel.id %}">{{novel.title}}</a>
+                </div>
             </div>
             {% endfor %}
         </div>
     </section>
 
     <!-- Tiểu Thuyết Đề Xuất -->
-    <section id="idSectionHot" class="bg-danger-subtle px-5">
+    <section id="idSectionHot" class="Section bg-danger-subtle px-5">
         <h2 class="line line-color">Đề Xuất</h2>
         <div class="row ">
             {% for novel in hot_novels %}
             <div class="col-3 h-100 py-3">
                 <img class="cardImgThumbnail" src="{{novel.cover_image}}" alt="Hình đại diện của {{novel.title}}">
-                <div class="text-center line-color"><a href="{% url 'novel_detail' novel.id %}">{{novel.title}}</a></div>
+                <div class="text-center line-color"><a href="{% url 'novel_detail' novel.id %}">{{novel.title}}</a>
+                </div>
 
             </div>
             {% endfor %}
