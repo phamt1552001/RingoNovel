@@ -4,15 +4,18 @@ from django.contrib.auth.models import User
 class Novel(models.Model):
     title = models.CharField(max_length=200)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='authored_novels')
-    co_authors = models.ManyToManyField(User, related_name='co_authored_novels', blank=True)
+    by = models.CharField(max_length=200, default='RingoNovel')
+    link = models.URLField(default='/')
+    genre = models.CharField(max_length=50, default='khác')
     description = models.TextField(default='Tác giả nhỏ yếu bất lực, không thể viết tắttắt')
+    chapters = models.IntegerField(default=0)
+    co_authors = models.ManyToManyField(User, related_name='co_authored_novels', blank=True)
     cover_image = models.URLField(default='https://antimatter.vn/wp-content/uploads/2022/11/hinh-anh-anime-nu.jpg')
     like_count = models.IntegerField(default=0) #Số lượt thích
     followers = models.ManyToManyField(User, related_name='followed_novels', blank=True) #Người theo dõi
-    create_at = models.DateTimeField(auto_now=True) #Ngày thêm vào
-    chapters = models.IntegerField(default=0)
+    create_at = models.DateTimeField(auto_now_add=True) #Ngày thêm vào
     status = models.CharField(max_length=50, default='ongoing')
-    genre = models.CharField(max_length=50, default='khác')
+
 
     def __str__(self):
         return self.title
@@ -28,6 +31,9 @@ class Chapter(models.Model):
     content = models.TextField()
     read_count = models.IntegerField(default=0)
     create_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['intChapter']
 
     def __str__(self):
         return self.title

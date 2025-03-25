@@ -1,3 +1,7 @@
 django
 psycopg2-binary
 whitenoise
+requests
+cloudscraper
+beautifulsoup4
+scrapy
