@@ -5,3 +5,5 @@ requests
 cloudscraper
 beautifulsoup4
 scrapy
+djangorestframework
+djangorestframework-simplejwt

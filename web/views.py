@@ -5,7 +5,12 @@ from django.db.models import Sum, Count, F, Value
 from django.db.models.functions import Coalesce
 from django.http import JsonResponse
 from django.core.paginator import Paginator
+from rest_framework import viewsets, status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import Novel, Chapter, Comment, Profile, Views_Novel
+from .serializers import NovelSerializers
 from .forms import NovelForm, ChapterForm
 from datetime import timedelta
 class NovelView:
@@ -102,7 +107,8 @@ class NovelView:
     @staticmethod
     def create_novel_other(request):
         context = {}
-        return render(request,'create_novel_other.html',context) 
+        return render(request,'create_novel_other.html',context)
+    
     
     @staticmethod
     @login_required
@@ -236,3 +242,24 @@ class MiscView:
     @staticmethod
     def donate(request):
         return render(request, 'donate.html')
+
+
+
+
+class API_NovelViewSet(viewsets.ModelViewSet):
+    queryset = Novel.objects.all()
+    serializer_class = NovelSerializers
+    # authentication_classes = [JWTAuthentication]  # Bắt buộc dùng JWT để xác thực
+    # permission_classes = [IsAuthenticated]  # Chỉ cho phép user đã đăng nhập truy cập
+    
+    def update(self, request, *args, **kwargs):
+        novel = self.get_object()
+        if novel.author != request.user or request.user.is_staff :  # Chỉ cho tác giả sửa
+            return Response({'error': 'Bạn không phải tác giả của truyện này!'}, status=status.HTTP_403_FORBIDDEN)
+        return super().update(request, *args, **kwargs)
+
+    def destroy(self, request, *args, **kwargs):
+        novel = self.get_object()
+        if novel.author != request.user:  # Chỉ cho tác giả xóa
+            return Response({'error': 'Bạn không có quyền xóa truyện này!'}, status=status.HTTP_403_FORBIDDEN)
+        return super().destroy(request, *args, **kwargs)
