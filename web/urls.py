@@ -5,8 +5,13 @@ from .views import NovelView, ChapterView, UserView, MiscView
 
 urlpatterns = [
     path('', NovelView.index, name='index'),
+    
+    #Novel
     path('novel/<int:novel_id>/', NovelView.detail, name='novel_detail'),
     path('novel/<int:novel_id>/add_comment/', NovelView.add_comment, name='add_comment'),
+    path("novel/create_novel_other/", NovelView.create_novel_other, name="create_novel_other"),
+    
+    
     path('profile/', UserView.profile, name='profile'),
     path('read_chapter/<int:novel_id>/<int:chapter_id>/', ChapterView.read, name='read_chapter'),
     path('like_novel/<int:novel_id>/', UserView.like_novel, name='like_novel'),

@@ -100,6 +100,11 @@ class NovelView:
         return render(request, 'find_novel.html', context)
     
     @staticmethod
+    def create_novel_other(request):
+        context = {}
+        return render(request,'create_novel_other.html',context) 
+    
+    @staticmethod
     @login_required
     def list_chapters(request, novel_id):
         novel = get_object_or_404(Novel, id=novel_id, author=request.user)
