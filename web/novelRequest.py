@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import requests
+>>>>>>> 32fb8a103a168b7d5ae800869d3a3bbf1746378a
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
