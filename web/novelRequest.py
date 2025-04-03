@@ -1,4 +1,3 @@
-import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -31,12 +30,15 @@ class MeTruyenChu:
     def getNovelDetail(self):
         self.img = self.URL + self.html.select_one('div.book-info-pic img')['src']
         self.title = self.html.select_one('div.mRightCol h1').text
-        self.description = self.html.select_one('div.scrolltext div').text
         self.author = self.html.select_one('div.book-info-text ul li a').text
         try:
             self.genre = self.html.select_one('div.book-info-text ul li.li--genres a').text
         except AttributeError:
             self.genre = "Tổng Hợp"
+        try:
+            self.description = self.html.select_one('div.scrolltext div').text
+        except AttributeError:
+            self.description = ''
         self.status = self.html.select_one('span.label-status').text
     def getChapterContent(self,url_chapter):
         driver.get(url_chapter)

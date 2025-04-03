@@ -13,6 +13,8 @@ from .models import Novel, Chapter, Comment, Profile, Views_Novel
 from .serializers import NovelSerializers
 from .forms import NovelForm, ChapterForm
 from datetime import timedelta
+
+from .novelRequest import MeTruyenChu
 class NovelView:
     @staticmethod
     def index(request):
@@ -107,6 +109,26 @@ class NovelView:
     @staticmethod
     def create_novel_other(request):
         context = {}
+        if request.method == 'POST':
+            urlMeTruyenChu = request.POST.get('urlMeTruyenChu')
+            if urlMeTruyenChu:
+                novel = MeTruyenChu(urlMeTruyenChu)
+                novel.getNovelDetail()
+                try:
+                    Novel.objects.create(
+                    title = novel.title,
+                    author = request.user,
+                    by = 'MeTruyenChu',
+                    link = urlMeTruyenChu,
+                    genre = novel.genre,
+                    description = novel.description,
+                    cover_image = novel.img,
+                    status = novel.status,
+                )
+                except Exception as e:
+                    context['error'] = f"An error occurred: {str(e)}"
+                
+        
         return render(request,'create_novel_other.html',context)
     
     
