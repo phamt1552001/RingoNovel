@@ -1,7 +1,13 @@
-from django.urls import path
+from django.urls import path, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from .views import NovelView, ChapterView, UserView, MiscView
+from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from .views import NovelView, ChapterView, UserView, MiscView, API_NovelViewSet
+
+router = DefaultRouter()
+router.register(r'apiNovels', API_NovelViewSet, basename='novel')
+
 
 urlpatterns = [
     path('', NovelView.index, name='index'),
@@ -28,4 +34,9 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='index'), name='logout'),
     path('find_novel/', NovelView.search, name='find_novel'),
+    
+    #Rest_API
+    path('',include(router.urls)),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

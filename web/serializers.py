@@ -4,4 +4,4 @@ from .models import Novel
 class NovelSerializers(serializers.ModelSerializer):
     class Meta:
         model = Novel
-        field = '__all__'
+        fields = '__all__'

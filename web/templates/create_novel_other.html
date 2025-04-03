@@ -6,5 +6,11 @@
 
 {% block content %}
 <h3> Tạo truyện </h3>
+<form method='POST'>
+    {% csrf_token %}
+    <label for='meTruyenChu'>Mê Truyện Chữ:</label>
+    <input id='meTruyenChu' name='urlMeTruyenChu' >
+    <button type='submit'>Gửi</button>
+</form>
 {% endblock content %}
 

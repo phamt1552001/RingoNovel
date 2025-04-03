@@ -1,0 +1,30 @@
+
+#novelImageThumbnail {
+    padding-left: 0;
+    padding-right: 0;
+}
+#novelImageThumbnail img{
+    display: block;
+    width: 25%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100px;
+    border: 3px solid;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#novelDescription .card-body{
+    padding-top: 0;
+    padding-left: 10px;
+}
+
+#idNovelComment .novelCommentWriter{
+    display: flex;
+}
+#idNovelComment img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
