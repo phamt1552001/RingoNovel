@@ -1,9 +1,9 @@
 django
 psycopg2-binary
 whitenoise
-requests
-cloudscraper
 beautifulsoup4
-scrapy
 djangorestframework
 djangorestframework-simplejwt
+selenium
+webdriver-manager
+django-background-tasks

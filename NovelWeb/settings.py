@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'background_task',
     'rest_framework',    #App tạo API
     'web',  # Thêm ứng dụng web vào đây
 ]
