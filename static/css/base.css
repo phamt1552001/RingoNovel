@@ -1,0 +1,21 @@
+#NarBar{
+    position: absolute;
+}
+#NarBar a{
+    color: #ff0000;
+}
+.line{
+    border-bottom: 2px solid #f1f1f1;
+}
+.line-color::after{
+    content: "";
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(to right, #ff6262, #ff0000);
+    display: block;
+}
+.line-color:hover::after{
+    width: 100%;
+    box-shadow: 0 2px 1px rgba(255, 255, 255, 0.566);
+    transition: width 0.3s;
+}
