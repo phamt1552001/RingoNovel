@@ -1,6 +1,7 @@
 from ..models import Novel, Chapter, Comment, Views_Novel
 from ..novelRequest import MeTruyenChu
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.timezone import now
 from django.db.models import Sum, Count, F, Value
@@ -139,8 +140,11 @@ class NovelView:
                     cover_image = novel.img,
                     status = novel.status,
                 )
+                    messages.success(request, 'Thêm thành công')
                 except Exception as e:
+                    messages.success(request, 'Thêm thất bại')
                     context['error'] = f"An error occurred: {str(e)}"
+
                 
         
         return render(request,'create_novel_other.html',context)
