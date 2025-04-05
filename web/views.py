@@ -50,23 +50,23 @@ class NovelView:
         comments = Comment.objects.filter(novel=novel).order_by('-id')
         views_novel = Views_Novel.get_or_create(novel=novel)
         
-        _list = []
-        for value in chapters:
-            _list.append(value.title)
+        # _list = []
+        # for value in chapters:
+        #     _list.append(value.title)
             
-        newNovel = MeTruyenChu(novel.link)
-        __list = newNovel.getNovelChapter(_list)
+        # newNovel = MeTruyenChu(novel.link)
+        # __list = newNovel.getNovelChapter(_list)
         
 
-        for value in __list:
-            Chapter.objects.create(
-                novel = novel,
-                intChapter = value[2],  # Tăng số chương
-                title = value[0],
-                content = value[1],
+        # for value in __list:
+        #     Chapter.objects.create(
+        #         novel = novel,
+        #         intChapter = value[2],  # Tăng số chương
+        #         title = value[0],
+        #         content = value[1],
                 
                 
-            )
+        #     )
         
         context = {
             "novel": novel,

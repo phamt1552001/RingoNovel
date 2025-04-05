@@ -1,0 +1,17 @@
+<div id="novelImageThumbnail" class="container mt-2">
+    <img src="{{novel.cover_image}}" alt="{{novel.title}} cover image" class="img-thumbnail">
+    <h2 class="text-center">{{ novel.title }}</h2>
+    <h5 class="text-center">{{ novel.author }}</h5>
+    <!-- LƯỢT XEM, LƯỢT THÍCH, LƯỢT THEO DÕI -->
+    <div class="bg-white text-center rounded-pill border border-2 border-black">
+        <span>Lượt xem: {{ views.views }}</span> |
+        <a href="#" id="like-button" data-novel-id="{{ novel.id }}" class="text-decoration-none">
+            <i class="bi bi-hand-thumbs-up"></i> Lượt thích: <span id="like-count">{{ novel.like_count}}</span>
+        </a> |
+        <a href="#" id="follow-button" data-novel-id="{{ novel.id }}" class="text-decoration-none">
+            <i class="bi bi-person-plus"></i>
+            Lượt theo dõi:
+            <span id="follow-count">{{novel.get_follow_count }}</span>
+        </a>
+    </div>
+</div>

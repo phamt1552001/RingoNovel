@@ -66,7 +66,7 @@ class MeTruyenChu:
                     chapter_title = match.group(2)        # Lấy tên chương
                 else:
                     chapter_number = None
-                    chapter_title = title  # Nếu không khớp, giữ nguyên tiêu đề ban đầu
+                    chapter_title = chapter.text  # Nếu không khớp, giữ nguyên tiêu đề ban đầu
 
                 new_chapters.append([chapter_title, chapter_content, int(chapter_number)])
 

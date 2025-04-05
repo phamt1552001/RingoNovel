@@ -1,0 +1,39 @@
+<div id="idNovelComment" class="container border border-2 border-black bg-white mt-4">
+    <h6>Bình Luận:</h6>
+    <form method="post" action="{% url 'add_comment' novel.id %}">
+        <div class="novelCommentWriter">
+            {% csrf_token %}
+            <textarea name="content" class="form-control" placeholder="Add a comment..." required></textarea>
+            <button type="submit" class="btn btn-primary">Gửi</button>
+        </div>
+
+    </form>
+
+    <!-- DANH SÁCH CÁC BÌNH LUẬN -->
+    {% for comment in comments %}
+    <div class="mt-2 d-flex">
+        <img src="{{ comment.user.profile.profile_picture }}" alt="{{ comment.user.username }}'s profile picture"
+        class="border border-1">
+        <div class="w-100">
+            <p class="bg-danger-subtle mb-0 w-100 ms-1 ps-2">{{comment.content}}</p>
+            <div>
+                <a href="{% url 'profile' %}">{{comment.user.username}}</a>
+                <small class="text-muted">{{ comment.create_at }}</small>
+                <button>Trả lời</button>
+            </div>
+        </div>
+
+
+        <div>
+            <!-- <p>
+                <strong class="rainbow-text">
+                    <a href="{% url 'profile' %}" >{{comment.user.username }}</a>
+                </strong>
+                {{ comment.content }}
+                <br>
+                
+            </p> -->
+        </div>
+    </div>
+    {% endfor %}
+</div>

@@ -6,4 +6,3 @@ djangorestframework
 djangorestframework-simplejwt
 selenium
 webdriver-manager
-django-background-tasks
